@@ -1,0 +1,156 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #effafd;
+}
+
+header {
+    background-color: #eae7dd;
+    padding: 20px;
+    text-align: center;
+    color: #99775c;
+}
+
+nav a {
+    margin: 0 15px;
+    color: #99775c;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+h1, h2 {
+    color: #99775c;
+}
+
+main {
+    padding: 20px;
+    text-align: center;
+}
+
+.line {
+    height: 1px;
+    background-color: #000000;
+    margin: 10px 0;
+}
+
+#items-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Три стовпці в рядку */
+    gap: 15px; /* Відстань між картками */
+    padding: 10px;
+}
+
+.item-card {
+    background-color: #eae7dd;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: 0.3s;
+    padding: 10px;
+}
+
+.item-card:hover {
+    transform: scale(1.05);
+}
+
+.item-card img {
+    width: 100%;
+    height: 120px; /* Висота зображення */
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.item-card h3 {
+    padding: 5px 0; /* Зменшені відступи для заголовка */
+    text-align: center;
+    color: #99775c;
+    font-size: 16px;
+}
+
+/* Адаптивність для малих екранів */
+@media (max-width: 800px) {
+    #items-container {
+        grid-template-columns: repeat(2, 1fr); /* Два стовпці на менших екранах */
+    }
+}
+
+@media (max-width: 500px) {
+    #items-container {
+        grid-template-columns: 1fr; /* Один стовпець на дуже малих екранах */
+    }
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    flex-direction: row;
+}
+
+.modal.show {
+    display: flex;
+    opacity: 1;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    width: 90%;
+    max-width: 600px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.modal-content img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 15px;
+    border-radius: 10px;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+
+/* Для заголовків секцій під час вибору */
+.section-title {
+    transition: all 0.5s ease-in-out;
+    font-size: 24px;
+    font-style: normal;
+}
+
+.section-title.active {
+    font-size: 32px;
+    font-style: italic;
+    color: #99775c;
+}
+
+/* Зміна стилів модального вікна */
+.modal-content img {
+    max-width: 300px;
+    max-height: 300px;
+    object-fit: contain;
+}
+
