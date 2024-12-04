@@ -1,89 +1,95 @@
+/* Загальні стилі */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #effafd;
+    background-color: #121212;
+    color: #e0e0e0;
 }
 
 header {
-    background-color: #eae7dd;
+    background-color: #1e1e1e;
     padding: 20px;
     text-align: center;
-    color: #99775c;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 36px;
+    animation: fadeIn 1.5s;
 }
 
 nav a {
     margin: 0 15px;
-    color: #99775c;
+    color: #e0e0e0;
     text-decoration: none;
     font-size: 18px;
+    transition: color 0.3s, transform 0.3s;
 }
 
-nav a:hover {
+nav a.active {
+    color: #f4a261;
+    font-weight: bold;
     text-decoration: underline;
 }
 
-h1, h2 {
-    color: #99775c;
+nav a:hover {
+    color: #f4a261;
+    transform: scale(1.1);
 }
 
 main {
     padding: 20px;
     text-align: center;
+    animation: slideIn 1s;
 }
 
 .line {
-    height: 1px;
-    background-color: #000000;
+    height: 2px;
+    background-color: #f4a261;
     margin: 10px 0;
+    animation: growLine 1s ease-out;
 }
 
-#items-container {
+.items-container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Три стовпці в рядку */
-    gap: 15px; /* Відстань між картками */
-    padding: 10px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    padding: 20px;
+    animation: fadeIn 1.5s;
 }
 
 .item-card {
-    background-color: #eae7dd;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
+    background-color: #1e1e1e;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
     overflow: hidden;
     cursor: pointer;
-    transition: 0.3s;
+    transition: transform 0.3s, box-shadow 0.3s;
     padding: 10px;
 }
 
 .item-card:hover {
-    transform: scale(1.05);
+    transform: scale(1.1);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.9);
 }
 
 .item-card img {
     width: 100%;
-    height: 120px; /* Висота зображення */
+    height: 150px;
     object-fit: cover;
-    border-radius: 10px;
+    border-radius: 8px;
+    transition: filter 0.3s;
+}
+
+.item-card img:hover {
+    filter: brightness(1.2);
 }
 
 .item-card h3 {
-    padding: 5px 0; /* Зменшені відступи для заголовка */
-    text-align: center;
-    color: #99775c;
-    font-size: 16px;
-}
-
-/* Адаптивність для малих екранів */
-@media (max-width: 800px) {
-    #items-container {
-        grid-template-columns: repeat(2, 1fr); /* Два стовпці на менших екранах */
-    }
-}
-
-@media (max-width: 500px) {
-    #items-container {
-        grid-template-columns: 1fr; /* Один стовпець на дуже малих екранах */
-    }
+    margin: 10px 0;
+    color: #f4a261;
 }
 
 .modal {
@@ -94,35 +100,73 @@ main {
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.8);
     justify-content: center;
     align-items: center;
-    opacity: 0;
-    transition: opacity 0.5s ease;
-    flex-direction: row;
+    animation: fadeInModal 0.5s;
 }
 
 .modal.show {
     display: flex;
-    opacity: 1;
 }
 
 .modal-content {
-    background-color: white;
+    background-color: #1e1e1e;
+    color: #e0e0e0;
     padding: 20px;
     width: 90%;
     max-width: 600px;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+    transform: scale(0.8);
+    transition: transform 0.3s ease-out;
 }
 
-.modal-content img {
-    width: 100%;
-    height: auto;
-    margin-bottom: 15px;
-    border-radius: 10px;
+.modal.show .modal-content {
+    transform: scale(1);
+}
+
+.modal-images {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0;
+    position: relative;
+}
+
+.modal-images img {
+    max-width: 300px;
+    max-height: 300px;
+    object-fit: contain;
+    border-radius: 8px;
+    transition: transform 0.3s;
+}
+
+.modal-images img:hover {
+    transform: scale(1.1);
+}
+
+.arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 30px;
+    color: #f4a261;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.arrow:hover {
+    color: #e76f51;
+}
+
+.left {
+    left: 10px;
+}
+
+.right {
+    right: 10px;
 }
 
 .close {
@@ -130,27 +174,50 @@ main {
     top: 10px;
     right: 20px;
     font-size: 30px;
+    color: #f4a261;
     cursor: pointer;
+    transition: color 0.3s;
 }
 
-
-/* Для заголовків секцій під час вибору */
-.section-title {
-    transition: all 0.5s ease-in-out;
-    font-size: 24px;
-    font-style: normal;
+.close:hover {
+    color: #e76f51;
 }
 
-.section-title.active {
-    font-size: 32px;
-    font-style: italic;
-    color: #99775c;
+/* Анімації */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
-/* Зміна стилів модального вікна */
-.modal-content img {
-    max-width: 300px;
-    max-height: 300px;
-    object-fit: contain;
+@keyframes slideIn {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 
+@keyframes growLine {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+@keyframes fadeInModal {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
