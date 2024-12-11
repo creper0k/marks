@@ -116,57 +116,57 @@ main {
     padding: 20px;
     width: 90%;
     max-width: 600px;
+    max-height: 90vh; /* Максимальна висота */
     border-radius: 15px;
     text-align: center;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
-    transform: scale(0.8);
-    transition: transform 0.3s ease-out;
-}
-
-.modal.show .modal-content {
-    transform: scale(1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between; /* Вирівнювання вмісту */
+    overflow-y: auto; /* Прокрутка, якщо текст перевищує висоту */
+    position: relative;
 }
 
 .modal-images {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 10px 0;
-    position: relative;
+    flex-shrink: 0; /* Зображення не стискається */
 }
 
 .modal-images img {
-    max-width: 300px;
-    max-height: 300px;
+    max-width: 90%; /* Забезпечує адаптивність */
+    max-height: 60vh; /* Максимальна висота для зображень */
     object-fit: contain;
-    border-radius: 8px;
-    transition: transform 0.3s;
-}
-
-.modal-images img:hover {
-    transform: scale(1.1);
+    transition: transform 0.3s ease;
+    margin: 0 auto;
 }
 
 .arrow {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    font-size: 30px;
+    font-size: 40px;
     color: #f4a261;
     cursor: pointer;
-    transition: color 0.3s;
+    transition: color 0.3s, transform 0.2s;
+    z-index: 2;
+}
+
+.arrow.left {
+    left: -50px; /* Відступ зліва */
+}
+
+.arrow.right {
+    right: -50px; /* Відступ справа */
 }
 
 .arrow:hover {
     color: #e76f51;
-}
-
-.left {
-    left: 10px;
-}
-
-.right {
-    right: 10px;
+    transform: scale(1.2);
 }
 
 .close {
@@ -176,12 +176,47 @@ main {
     font-size: 30px;
     color: #f4a261;
     cursor: pointer;
-    transition: color 0.3s;
+    transition: color 0.3s ease;
 }
 
 .close:hover {
     color: #e76f51;
 }
+
+.modal.show .modal-content {
+    animation: fadeInModal 0.5s;
+}
+
+.modal-content p {
+    margin: 10px 0;
+    text-align: justify; /* Для акуратного вирівнювання тексту */
+}
+
+#navigation-buttons {
+    display: flex;
+    justify-content: space-between; /* Кнопки розташовані симетрично */
+    width: 100%; /* Займають всю ширину */
+    max-width: 600px; /* Відповідає ширині модального вікна */
+    position: absolute;
+    top: 50%; /* По центру модального вікна */
+    transform: translateY(-50%);
+    pointer-events: none; /* Запобігає блокуванню інших елементів */
+}
+
+#navigation-buttons button {
+    background: none;
+    border: none;
+    font-size: 30px;
+    color: #f4a261;
+    cursor: pointer;
+    pointer-events: all; /* Активація для кліків */
+    transition: color 0.3s ease;
+}
+
+#navigation-buttons button:hover {
+    color: #e76f51;
+}
+
 
 /* Анімації */
 @keyframes fadeIn {
