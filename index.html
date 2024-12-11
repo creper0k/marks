@@ -31,13 +31,13 @@
         <div id="modal" class="modal">
             <div class="modal-content">
                 <h2 id="item-title"></h2>
-                <img id="item-image" src="" alt="Зображення" style="max-width: 80%; max-height: 400px; object-fit: contain;">
+                <div class="modal-images">
+                    <button class="arrow left" onclick="changeImage(-1)">&#8592;</button>
+                    <img id="item-image" src="" alt="Зображення">
+                    <button class="arrow right" onclick="changeImage(1)">&#8594;</button>
+                </div>
                 <p id="item-description"></p>
                 <p id="item-details"></p>
-                <div id="navigation-buttons" style="display: none;">
-                    <button onclick="changeImage(-1)">&#8592;</button>
-                    <button onclick="changeImage(1)">&#8594;</button>
-                </div>
                 <span class="close" onclick="closeModal()">&times;</span>
             </div>
         </div>
