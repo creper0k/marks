@@ -3,46 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Колекції</title>
+    <meta name="description" content="Колекція марок та монет України">
+    <meta name="keywords" content="марки, монети, колекція, Україна, філателія, нумізматика">
+    <title>Колекції марок та монет України</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
 <body>
+    <div id="loader" class="loader">
+        <div class="spinner"></div>
+    </div>
+
     <header>
         <h1>Колекції</h1>
         <nav>
-            <a href="#" onclick="showSection('stamps')">Марки</a>
-            <a href="#" onclick="showSection('coins')">Монети</a>
+            <a href="#stamps" aria-label="Перейти до розділу марок">Марки</a>
+            <a href="#coins" aria-label="Перейти до розділу монет">Монети</a>
         </nav>
     </header>
 
     <main>
-        <section id="stamps-section" style="display: none;">
+        <section id="stamps-section" style="display: none;" aria-label="Розділ марок">
             <h2 class="section-title">Марки</h2>
-            <div class="line"></div>
-            <div id="stamps-container" class="items-container"></div>
+            <div class="line" role="separator"></div>
+            <div id="stamps-container" class="items-container" role="list"></div>
         </section>
 
-        <section id="coins-section" style="display: none;">
+        <section id="coins-section" style="display: none;" aria-label="Розділ монет">
             <h2 class="section-title">Монети</h2>
-            <div class="line"></div>
-            <div id="coins-container" class="items-container"></div>
+            <div class="line" role="separator"></div>
+            <div id="coins-container" class="items-container" role="list"></div>
         </section>
 
-        <div id="modal" class="modal">
+        <div id="modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="item-title">
             <div class="modal-content">
                 <h2 id="item-title"></h2>
-                <div class="modal-images">
-                    <button class="arrow left" onclick="changeImage(-1)">&#8592;</button>
-                    <img id="item-image" src="" alt="Зображення">
-                    <button class="arrow right" onclick="changeImage(1)">&#8594;</button>
+                <div class="modal-image-container">
+                    <img id="item-image" src="" alt="Зображення предмету колекції" loading="lazy">
                 </div>
                 <p id="item-description"></p>
                 <p id="item-details"></p>
-                <span class="close" onclick="closeModal()">&times;</span>
+                <div id="navigation-buttons" style="display: none;" role="navigation">
+                    <button onclick="changeImage(-1)" aria-label="Попереднє зображення" class="nav-button">&#8592;</button>
+                    <button onclick="changeImage(1)" aria-label="Наступне зображення" class="nav-button">&#8594;</button>
+                </div>
+                <button class="close" onclick="closeModal()" aria-label="Закрити">&times;</button>
             </div>
         </div>
     </main>
 
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 </body>
 </html>
