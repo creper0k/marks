@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Колекція марок та монет</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Колекція марок та монет</h1>
+        <nav>
+            <a href="#stamps" class="active">Марки</a>
+            <a href="#coins">Монети</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="stamps-section">
+            <div id="stamps-container" class="items-container"></div>
+        </section>
+
+        <section id="coins-section">
+            <div id="coins-container" class="items-container"></div>
+        </section>
+    </main>
+
+    <!-- Модальне вікно для перегляду деталей -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <button class="close" onclick="closeModal()">&times;</button>
+            <h2 id="item-title"></h2>
+            <div class="modal-image-container">
+                <img id="item-image" alt="Зображення предмету">
+                <div id="navigation-buttons">
+                    <button class="nav-button" onclick="changeImage(-1)">&#10094;</button>
+                    <button class="nav-button" onclick="changeImage(1)">&#10095;</button>
+                </div>
+            </div>
+            <p id="item-description"></p>
+            <p id="item-details"></p>
+        </div>
+    </div>
+
+    <!-- Модальне вікно редактора -->
+    <div id="editorModal" class="editor-modal">
+        <div class="editor-content">
+            <h2>Додати новий предмет</h2>
+            <form id="editorForm" class="editor-form">
+                <input type="text" id="itemTitle" placeholder="Назва" required>
+                <textarea id="itemDescription" placeholder="Опис" required></textarea>
+                <input type="text" id="itemDetails" placeholder="Деталі" required>
+                <select id="itemType" required>
+                    <option value="stamps">Марка</option>
+                    <option value="coins">Монета</option>
+                </select>
+                <button type="submit">Зберегти</button>
+                <button type="button" onclick="closeEditor()">Скасувати</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Індикатор завантаження -->
+    <div class="loader">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Плаваючі кнопки -->
+    <div class="floating-buttons">
+        <button id="addButton" class="floating-button" title="Додати новий предмет">+</button>
+        <button id="favoritesButton" class="floating-button" title="Показати вибране">
+            ❤
+            <span id="favoritesBadge" class="favorites-badge">0</span>
+        </button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
