@@ -10,46 +10,75 @@
     <header>
         <h1>Колекція марок та монет</h1>
         <nav>
-            <a href="#stamps" class="active">Марки</a>
+            <a href="#stamps">Марки</a>
             <a href="#coins">Монети</a>
         </nav>
     </header>
 
     <main>
+        <!-- Пошук -->
+        <div class="controls">
+            <div class="search-container">
+                <input type="text" id="search" placeholder="Пошук..." aria-label="Пошук">
+            </div>
+        </div>
+        
+        <!-- Роздільна лінія після пошуку -->
+        <div class="section-divider"></div>
+
+        <!-- Секція марок -->
         <section id="stamps-section">
             <div id="stamps-container" class="items-container"></div>
+            <!-- Роздільна лінія в кінці секції -->
+            <div class="section-divider"></div>
         </section>
 
+        <!-- Секція монет -->
         <section id="coins-section">
             <div id="coins-container" class="items-container"></div>
+            <!-- Роздільна лінія в кінці секції -->
+            <div class="section-divider"></div>
         </section>
     </main>
 
-    <!-- Модальне вікно для перегляду деталей -->
+    <!-- Модальне вікно -->
     <div id="modal" class="modal">
         <div class="modal-content">
-            <button class="close" onclick="closeModal()">&times;</button>
             <h2 id="item-title"></h2>
             <div class="modal-image-container">
-                <img id="item-image" alt="Зображення предмету">
-                <div id="navigation-buttons">
-                    <button class="nav-button" onclick="changeImage(-1)">&#10094;</button>
-                    <button class="nav-button" onclick="changeImage(1)">&#10095;</button>
-                </div>
+                <img id="item-image" src="" alt="Зображення предмету колекції">
             </div>
             <p id="item-description"></p>
             <p id="item-details"></p>
+            <div id="navigation-buttons">
+                <button onclick="changeImage(-1)" class="nav-button">&#8592;</button>
+                <button onclick="changeImage(1)" class="nav-button">&#8594;</button>
+            </div>
+            <button class="close" onclick="closeModal()">&times;</button>
         </div>
     </div>
 
-    <!-- Модальне вікно редактора -->
-    <div id="editorModal" class="editor-modal">
+    <!-- Плаваючі кнопки -->
+    <div class="floating-buttons">
+        <button class="floating-button" id="addButton" title="Додати новий елемент">+</button>
+        <button class="floating-button" id="favoritesButton" title="Вибрані елементи">❤</button>
+    </div>
+
+    <!-- Редактор -->
+    <div class="editor-modal" id="editorModal">
         <div class="editor-content">
-            <h2>Додати новий предмет</h2>
-            <form id="editorForm" class="editor-form">
-                <input type="text" id="itemTitle" placeholder="Назва" required>
-                <textarea id="itemDescription" placeholder="Опис" required></textarea>
-                <input type="text" id="itemDetails" placeholder="Деталі" required>
+            <h2>Додати новий елемент</h2>
+            <form class="editor-form" id="editorForm">
+                <input type="text" placeholder="Назва" id="itemTitle" required>
+                <textarea placeholder="Опис" id="itemDescription" required></textarea>
+                <input type="text" placeholder="Деталі" id="itemDetails" required>
+                <div class="file-upload">
+                    <label for="itemImages" class="file-upload-label">
+                        Додати зображення
+                        <input type="file" id="itemImages" accept="image/*" multiple>
+                    </label>
+                </div>
+                <div id="imagePreview" class="image-preview"></div>
                 <select id="itemType" required>
                     <option value="stamps">Марка</option>
                     <option value="coins">Монета</option>
@@ -58,20 +87,6 @@
                 <button type="button" onclick="closeEditor()">Скасувати</button>
             </form>
         </div>
-    </div>
-
-    <!-- Індикатор завантаження -->
-    <div class="loader">
-        <div class="spinner"></div>
-    </div>
-
-    <!-- Плаваючі кнопки -->
-    <div class="floating-buttons">
-        <button id="addButton" class="floating-button" title="Додати новий предмет">+</button>
-        <button id="favoritesButton" class="floating-button" title="Показати вибране">
-            ❤
-            <span id="favoritesBadge" class="favorites-badge">0</span>
-        </button>
     </div>
 
     <script src="script.js"></script>
